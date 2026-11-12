@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#dff3ff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<title>ICY</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<noscript>ICY needs JavaScript to run. Please turn it on and reload.</noscript>
+<main id="app">
+
+  <!-- Home -->
+  <section id="home" class="screen" hidden>
+    <div class="home-top">
+      <h1 id="wordmark" class="wordmark">ICY</h1>
+      <p class="tagline">Break the ice.</p>
+    </div>
+    <div class="home-form">
+      <label class="field"><span class="sr">Your name</span>
+        <input id="name1" type="text" placeholder="Your name" maxlength="20" autocomplete="off" autocapitalize="words"></label>
+      <label class="field"><span class="sr">Their name</span>
+        <input id="name2" type="text" placeholder="Their name" maxlength="20" autocomplete="off" autocapitalize="words"></label>
+      <div class="chips" role="radiogroup" aria-label="Length">
+        <button type="button" class="chip" role="radio" data-len="12"><b>Quick</b><small>12 cards</small></button>
+        <button type="button" class="chip" role="radio" data-len="24"><b>Classic</b><small>24 cards</small></button>
+        <button type="button" class="chip" role="radio" data-len="36"><b>Deep</b><small>36 cards</small></button>
+      </div>
+      <button id="start" type="button" class="btn primary big">Start</button>
+      <p id="homeMsg" class="note" role="status"></p>
+    </div>
+    <p class="note foot">One phone. Take turns. Skip anything.</p>
+  </section>
+
+  <!-- Card -->
+  <section id="play" class="screen" hidden>
+    <header class="topbar">
+      <div class="progress" aria-hidden="true"><i id="bar"></i></div>
+      <span id="count" class="count">1 / 24</span>
+      <button id="quit" type="button" class="icon-btn" aria-label="End session">&times;</button>
+    </header>
+    <div id="stage" class="stage"></div>
+    <div id="who" class="who"></div>
+    <article id="card" class="card">
+      <span id="tag" class="tag" hidden></span>
+      <p id="question" class="question"></p>
+      <p id="hint" class="hint" hidden>Then flip it: ask them the same.</p>
+    </article>
+    <div class="actions">
+      <button id="skip" type="button" class="btn ghost">Skip</button>
+      <button id="next" type="button" class="btn primary">Next</button>
+    </div>
+  </section>
+
+  <!-- Stage interstitial -->
+  <section id="inter" class="screen" hidden>
+    <button id="interCard" type="button" class="card inter-card">
+      <span id="interTitle" class="inter-title"></span>
+      <span id="interSub" class="inter-sub"></span>
+      <span class="inter-tap">Tap to continue</span>
+    </button>
+  </section>
+
+  <!-- End -->
+  <section id="end" class="screen" hidden>
+    <div class="end-body">
+      <h2 class="end-title">Ice broken.</h2>
+      <p id="endCount" class="end-sub"></p>
+      <p class="rate-q">How was it?</p>
+      <div class="rate" role="group" aria-label="How was it?">
+        <button type="button" class="rate-btn" data-rate="meh"><span aria-hidden="true">&#128528;</span><small>Meh</small></button>
+        <button type="button" class="rate-btn" data-rate="good"><span aria-hidden="true">&#128578;</span><small>Good</small></button>
+        <button type="button" class="rate-btn" data-rate="loved"><span aria-hidden="true">&#128525;</span><small>Loved it</small></button>
+      </div>
+      <p id="thanks" class="note" role="status"></p>
+    </div>
+    <div class="actions col">
+      <button id="again" type="button" class="btn primary big">Play again</button>
+      <button id="toHome" type="button" class="btn ghost">Home</button>
+    </div>
+  </section>
+
+  <!-- Stats (hidden) -->
+  <section id="stats" class="screen" hidden>
+    <h2 class="stats-title">Stats</h2>
+    <div id="statsBody" class="stats-body"></div>
+    <div class="actions col">
+      <button id="reset" type="button" class="btn danger">Reset all data</button>
+      <button id="statsBack" type="button" class="btn ghost">Back</button>
+    </div>
+  </section>
+
+</main>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="questions.js"></script>
+<script src="deck.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
